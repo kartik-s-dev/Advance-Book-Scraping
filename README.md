@@ -1,36 +1,34 @@
-# 📚 Advance Book Scraping & Analysis Tool
+# Advance Book Scraping
 
-A powerful, automated Python tool designed to scrape book data from e-commerce/web sources, process and clean the data, store it in structured databases (SQLite & CSV), and provide insightful visual analytics using Pandas and Matplotlib.
+A menu-driven Python script that scrapes book data from [books.toscrape.com](https://books.toscrape.com), a practice website made for scraping. The data there is fake demo data, not real store prices.
 
----
+## What it does
 
-## ✨ Features
+1. Scrape: you enter how many listing pages to scrape. For each book it collects title, price, availability, star rating, category and description, then saves to a SQLite database (`books.db`).
+2. CSV: converts the data to a CSV file.
+3. Pandas queries: filter and query a CSV file.
+4. Matplotlib: draw charts from a CSV file.
 
-- **Automated Web Scraping:** Scrapes book titles, prices, ratings, and availability automatically.
-- **Data Persistence:** Saves extracted data directly into `CSV` files and `SQLite` databases (`books.db`).
-- **Data Analysis & Filtering:** Built-in Pandas queries to filter books by price, rating, and custom conditions.
-- **Data Visualization:** Generates visual graphs using Matplotlib for price trends and category distribution.
-- **Interactive CLI:** Easy-to-use command-line interface to run scraper, save files, and execute queries.
+## Tech
 
----
+Python 3, requests, BeautifulSoup4, pandas, matplotlib, sqlite3.
 
-## 🛠️ Tech Stack & Libraries
+## Files
 
-- **Language:** Python 3.x
-- **Scraping:** BeautifulSoup4, Requests
-- **Data Handling:** Pandas, SQLite3
-- **Visualization:** Matplotlib
+- `main.py`: menu
+- `BookScraper.py`: scraping, SQLite and CSV export
+- `pan.py`: pandas queries
+- `matplot.py`: charts
+- `books.csv`, `books.db`: sample output from an earlier run (40 books)
 
----
+## Run
 
-## 📁 Project Structure
+    pip install requests beautifulsoup4 pandas matplotlib
+    python main.py
 
-```text
-Advance-Book-Scraping/
-│
-├── main.py                   # Main CLI Entry Point
-├── BookScraper.py            # Web scraping logic
-├── pan.py                    # Pandas data processing & query execution
-├── matplot.py                # Data visualization & graphing module
-├── book.csv / books.csv      # Extracted datasets
-└── books.db                  # SQLite database file
+## Limits
+
+- Practice site only. No tests.
+- Requests have no timeout or error handling, so a network problem can crash the script.
+- The column name `Raiting` is misspelled in the saved data (kept as is).
+- Menu input must be a number, other input crashes.
